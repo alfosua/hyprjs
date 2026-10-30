@@ -1,0 +1,49 @@
+{
+  "name": "hyprjs",
+  "version": "0.0.1",
+  "description": "JavaScript/TypeScript API bridge for Hyprland",
+  "author": "Alfonso Suarez <68227851+alfosua@users.noreply.github.com> (https://alfosua.com)",
+  "license": "BSD-3-Claude",
+  "type": "module",
+  "keywords": [
+    "hyprland"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "ci": "pnpm run typecheck && pnpm run lint && pnpm run test && pnpm run build",
+    "prepublishOnly": "pnpm run ci"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@biomejs/biome": "^2.6.4",
+    "@changesets/cli": "^3.0.3",
+    "@types/node": "^26.6.6",
+    "publint": "^0.3.25",
+    "tsdown": "^0.23.3",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  }
+}
